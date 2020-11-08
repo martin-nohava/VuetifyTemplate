@@ -7,12 +7,12 @@
         </p>
         <!-- STEPPER FOR BIGGER SCREENS -->
         <v-stepper
-            v-model="e6"
+            v-model="stepNumber"
             vertical
             class="hidden-sm-and-down"
         >
             <v-stepper-step
-            :complete="e6 > 1"
+            :complete="stepNumber > 1"
             step="1"
             >
             Tell us who you are
@@ -20,22 +20,11 @@
             </v-stepper-step>
 
             <v-stepper-content step="1">
-            
             <FormS1></FormS1>
-            
-            <v-btn
-                color="primary"
-                @click="e6 = 2"
-            >
-                Continue
-            </v-btn>
-            <v-btn text>
-                Cancel
-            </v-btn>
             </v-stepper-content>
 
             <v-stepper-step
-            :complete="e6 > 2"
+            :complete="stepNumber > 2"
             step="2"
             >
             How can we get in touch
@@ -43,20 +32,10 @@
 
             <v-stepper-content step="2">
                 <FormS2></FormS2>
-                
-            <v-btn
-                color="primary"
-                @click="e6 = 3"
-            >
-                Continue
-            </v-btn>
-            <v-btn text>
-                Cancel
-            </v-btn>
             </v-stepper-content>
 
             <v-stepper-step
-            :complete="e6 > 3"
+            :complete="stepNumber > 3"
             step="3"
             >
             Setup additional tokens
@@ -64,15 +43,6 @@
 
             <v-stepper-content step="3">
             <FormS3></FormS3>
-            <v-btn
-                color="primary"
-                @click="e6 = 4"
-            >
-                Finish
-            </v-btn>
-            <v-btn text>
-                Cancel
-            </v-btn>
             </v-stepper-content>
 
         </v-stepper>
@@ -183,10 +153,14 @@ export default {
 
     data() {
         return {
-            e6: 1,
             e1: 1,
-            moznosti: FormS2.data.select,
+            
         } 
+    },
+    computed: {
+        stepNumber: function() {
+          return this.$store.getters.getStep
+        }
     }
 }
 </script>

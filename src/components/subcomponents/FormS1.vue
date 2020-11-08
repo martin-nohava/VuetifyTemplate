@@ -29,9 +29,17 @@
             outlined
           ></v-text-field>
         </v-col>
-        <v-col>
-          <v-btn @click="saveData">display data</v-btn>
-        </v-col>
+      </v-row>
+      <v-row>
+        <v-btn
+          color="primary"
+          @click="nextStep"
+        >
+          Continue
+        </v-btn>
+         <v-btn text>
+            Cancel
+          </v-btn>
       </v-row>
     </v-container>
     </v-form>
@@ -54,9 +62,19 @@ export default {
       ],
     }),
     methods: {
+
+      nextStep() {
+        this.saveData()
+        this.increment()
+      },
       saveData() {
         this.$store.dispatch('setName', { firstName: this.firstname, lastName: this.lastname })
+        
+      },
+      increment() {
+        this.$store.dispatch('incrementStep')
       }
-    }
+    },
+    
 }
 </script>

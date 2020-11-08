@@ -16,6 +16,17 @@
           ></v-text-field>
         </v-col>
       </v-row>
+      <v-row>
+        <v-btn
+          color="primary"
+          @click="nextStep"
+        >
+          Continue
+        </v-btn>
+         <v-btn text>
+            Cancel
+          </v-btn>
+      </v-row>
     </v-container>
     </v-form>
 </template>
@@ -30,5 +41,18 @@ export default {
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
     }),
+    methods: {
+
+        nextStep() {
+            this.saveData()
+            this.increment()
+        },
+        saveData() {
+            this.$store.dispatch('setEmail', this.email)
+        },
+        increment() {
+            this.$store.dispatch('incrementStep')
+        }
+    },
 }
 </script>
