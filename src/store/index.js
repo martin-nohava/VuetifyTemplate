@@ -9,7 +9,8 @@ export default new Vuex.Store({
       firstName: '',
       lastName: '',
       email: '',
-      additionaTokens: []
+      selectedAdditionalTokens: [],
+      additionalTokensData: []
     },
     stepper: {
       step: 1
@@ -25,8 +26,11 @@ export default new Vuex.Store({
     SET_EMAIL (state, payload) {
       state.user.email = payload
     },
-    SET_TOKENS (state, payload) {
-      state.user.additionaTokens = payload
+    SET_SELECTED_TOKENS (state, payload) {
+      state.user.selectedAdditionalTokens = payload
+    },
+    SET_TOKENS_DATA (state, payload) {
+      state.user.additionalTokensData.push(payload)
     },
     INCREMENT_STEP(state) {
       state.stepper.step += 1
@@ -40,8 +44,11 @@ export default new Vuex.Store({
     setEmail (context, payload) {
       context.commit('SET_EMAIL', payload)
     },
-    setTokens (context, payload) {
-      context.commit('SET_TOKENS', payload)
+    setSelectedTokens (context, payload) {
+      context.commit('SET_SELECTED_TOKENS', payload)
+    },
+    setTokensData (context, payload) {
+      context.commit('SET_TOKENS_DATA', payload)
     },
     incrementStep(context) {
       context.commit('INCREMENT_STEP')
@@ -56,8 +63,11 @@ export default new Vuex.Store({
     getEmail(state) {
       return state.user.email
     },
-    getTokens(state) {
-      return state.user.additionaTokens
+    getSelectedTokens(state) {
+      return state.user.selectedAdditionalTokens
+    },
+    getTokensData(state) {
+      return state.user.additionalTokensData
     },
     getStep(state) {
       return state.stepper.step

@@ -38,23 +38,20 @@ export default {
           'Sex',
           'Age',
           'Departement',
-          'Degree'
         ],
       }
     },
     methods: {
-
-      nextStep() {
-        this.saveData()
-        this.increment()
-      },
-      saveData() {
-        this.$store.dispatch('setTokens', this.select)
-        
-      },
-      increment() {
-        this.$store.dispatch('incrementStep')
-      }
+        nextStep() {
+            this.saveData()
+            this.increment()
+        },
+        saveData() {          
+            this.$store.dispatch('setSelectedTokens', this.select)
+        },
+        increment() {
+            this.$store.dispatch('incrementStep')
+        }
     },
 }
 </script>

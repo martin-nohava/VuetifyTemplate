@@ -38,11 +38,22 @@
             :complete="stepNumber > 3"
             step="3"
             >
-            Setup additional tokens
+            Chose additional tokens
             </v-stepper-step>
 
             <v-stepper-content step="3">
             <FormS3></FormS3>
+            </v-stepper-content>
+
+            <v-stepper-step
+            :complete="stepNumber > 4"
+            step="4"
+            >
+            Fill information
+            </v-stepper-step>
+
+            <v-stepper-content step="4">
+            <FormS4></FormS4>
             </v-stepper-content>
 
         </v-stepper>
@@ -142,6 +153,7 @@
 import FormS1 from './subcomponents/FormS1'
 import FormS2 from './subcomponents/FormS2'
 import FormS3 from './subcomponents/FormS3'
+import FormS4 from './subcomponents/FormS4'
 
 export default {
 
@@ -149,6 +161,7 @@ export default {
         FormS1,
         FormS2,
         FormS3,
+        FormS4
     },
 
     data() {

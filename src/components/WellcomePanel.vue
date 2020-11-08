@@ -3,7 +3,7 @@
         <p
         class="text-h4 text-justify"
         >
-        Wellcome! {{ name }} {{step}} {{ email }} {{tokens}}
+        Wellcome! {{ name }} {{step}} {{ email }} {{tokens}} {{tokensData}}
         </p>
         <p
         class="text-body-2 text-justify"
@@ -27,7 +27,10 @@ export default {
             return this.$store.getters.getEmail
         },
         tokens() {
-            return this.$store.getters.getTokens
+            return this.$store.getters.getSelectedTokens
+        },
+        tokensData() {
+            return this.$store.getters.getTokensData
         }
     }
 }
