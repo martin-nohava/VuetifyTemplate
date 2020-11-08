@@ -5,7 +5,7 @@
       rounded="lg"
       class="ma-sm-7"
       :elevation="6"
-
+      :style="[$vuetify.theme.dark ? null : {'background-color': '#fff'}]"
     >
       <v-avatar
         :color="$vuetify.breakpoint.smAndDown ? 'grey darken-1' : 'transparent'"
@@ -32,7 +32,10 @@
       ></v-avatar>
     </v-app-bar>
 
-    <v-main class="pt-custom">
+    <v-main 
+    class="pt-custom"
+    :style="[$vuetify.theme.dark ? null : {'background-color': '#F5F5F5'}]"
+    >
 
     <div class="mx-7">
       <v-layout row justify-space-between>
@@ -40,118 +43,20 @@
           <v-sheet
               rounded="lg"
               min-height="420"
-              :elevation="4"
-            >
-              <!-- LEFT -->
-              1
+              :elevation="6"    
+            >         
+                <!-- LEFT -->
+              <WellcomePanel></WellcomePanel>
             </v-sheet>
         </v-flex>
         <v-flex xs12 sm6 md7 class="mx-3 mt-7">
           <v-sheet
               rounded="lg"
               min-height="420"
-              :elevation="4"
+              :elevation="6"
             >
-              <div class="pa-6">
-                <!-- MAIN -->
-                <v-stepper
-                  v-model="e6"
-                  vertical
-                >
-                  <v-stepper-step
-                    :complete="e6 > 1"
-                    step="1"
-                  >
-                    Select an app
-                    <small>Summarize if needed</small>
-                  </v-stepper-step>
-
-                  <v-stepper-content step="1">
-                    <v-card
-                      color="grey lighten-1"
-                      class="mb-12"
-                      height="200px"
-                    ></v-card>
-                    <v-btn
-                      color="primary"
-                      @click="e6 = 2"
-                    >
-                      Continue
-                    </v-btn>
-                    <v-btn text>
-                      Cancel
-                    </v-btn>
-                  </v-stepper-content>
-
-                  <v-stepper-step
-                    :complete="e6 > 2"
-                    step="2"
-                  >
-                    Configure analytics for this app
-                  </v-stepper-step>
-
-                  <v-stepper-content step="2">
-                    <v-card
-                      color="grey lighten-1"
-                      class="mb-12"
-                      height="200px"
-                    ></v-card>
-                    <v-btn
-                      color="primary"
-                      @click="e6 = 3"
-                    >
-                      Continue
-                    </v-btn>
-                    <v-btn text>
-                      Cancel
-                    </v-btn>
-                  </v-stepper-content>
-
-                  <v-stepper-step
-                    :complete="e6 > 3"
-                    step="3"
-                  >
-                    Select an ad format and name ad unit
-                  </v-stepper-step>
-
-                  <v-stepper-content step="3">
-                    <v-card
-                      color="grey lighten-1"
-                      class="mb-12"
-                      height="200px"
-                    ></v-card>
-                    <v-btn
-                      color="primary"
-                      @click="e6 = 4"
-                    >
-                      Continue
-                    </v-btn>
-                    <v-btn text>
-                      Cancel
-                    </v-btn>
-                  </v-stepper-content>
-
-                  <v-stepper-step step="4">
-                    View setup instructions
-                  </v-stepper-step>
-                  <v-stepper-content step="4">
-                    <v-card
-                      color="grey lighten-1"
-                      class="mb-12"
-                      height="200px"
-                    ></v-card>
-                    <v-btn
-                      color="primary"
-                      @click="e6 = 1"
-                    >
-                      Continue
-                    </v-btn>
-                    <v-btn text>
-                      Cancel
-                    </v-btn>
-                  </v-stepper-content>
-                </v-stepper>
-              </div>
+               <!-- MAIN -->
+               <MainPanel></MainPanel>
             </v-sheet>
         </v-flex>
         <v-flex xs12 md2 class="mx-3 mt-7">
@@ -160,29 +65,20 @@
               <v-sheet
               rounded="lg"
               min-height="200"
-              :elevation="4"
+              :elevation="6"
             >
-              <div class="pa-6">
-                <!-- RIGHT -->
-                3.1
-                <v-switch 
-                v-model="$vuetify.theme.dark"
-                :label="`Turn dark mode ${ status }`"
-                @click="changeDarkmodeStatus"
-                >
-
-                </v-switch>
-              </div>
+              <!-- RIGHT UP -->
+              <CustomizationPanel></CustomizationPanel>
             </v-sheet>
             </v-flex>
             <v-flex class="mt-7">
               <v-sheet
               rounded="lg"
               min-height="200"
-              :elevation="4"
+              :elevation="6"
             >
-              <!--  -->
-              3.2
+              <!-- RIGHT DOWN -->
+              <HelpPanel></HelpPanel>
             </v-sheet>
             </v-flex>
           </v-layout>
@@ -191,13 +87,35 @@
     </div>
     
     </v-main>
+
+    <v-footer padless>
+      <v-col
+        class="text-center"
+        cols="12"
+      >
+        {{ new Date().getFullYear() }} — <strong>Kvacker</strong>
+      </v-col>
+    </v-footer>
+
   </v-app>
 </template>
 
 <script>
 
+import WellcomePanel from './components/WellcomePanel';
+import HelpPanel from './components/HelpPanel';
+import MainPanel from './components/MainPanel';
+import CustomizationPanel from './components/CustomizationPanel'
+
   export default {
     
+    components: {
+      WellcomePanel,
+      HelpPanel,
+      MainPanel,
+      CustomizationPanel
+    },
+
     data: () => ({
       links: [
         'Dashboard',
@@ -206,30 +124,7 @@
         'Updates',
       ],
       status: 'on',
-      valid: false,
-      firstname: '',
-      lastname: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters',
-      ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
-      ],
-      e6: 1,
     }),
-    methods: {
-      changeDarkmodeStatus() {
-        if(this.status == 'on') {
-          this.status = 'off'
-        }
-        else {
-          this.status = 'on'
-        }
-      }
-    }
   }
 </script>
 
