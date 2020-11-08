@@ -113,7 +113,7 @@ import CustomizationPanel from './components/CustomizationPanel'
       WellcomePanel,
       HelpPanel,
       MainPanel,
-      CustomizationPanel
+      CustomizationPanel,
     },
 
     data: () => ({

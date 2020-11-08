@@ -18,9 +18,10 @@
 export default {
     data() {
         return {
+            status: 'on'
         }
     },
-    
+
     methods: {
       changeDarkmodeStatus() {
         if(this.status == 'on') {

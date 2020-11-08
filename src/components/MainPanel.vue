@@ -5,6 +5,7 @@
         >
         Please enter your credentials
         </p>
+        <!-- STEPPER FOR BIGGER SCREENS -->
         <v-stepper
             v-model="e6"
             vertical
@@ -14,16 +15,14 @@
             :complete="e6 > 1"
             step="1"
             >
-            Select an app
+            Tell us who you are
             <small>Summarize if needed</small>
             </v-stepper-step>
 
             <v-stepper-content step="1">
-            <v-card
-                color="grey lighten-1"
-                class="mb-12"
-                height="200px"
-            ></v-card>
+            
+            <FormS1></FormS1>
+            
             <v-btn
                 color="primary"
                 @click="e6 = 2"
@@ -39,15 +38,12 @@
             :complete="e6 > 2"
             step="2"
             >
-            Configure analytics for this app
+            How can we get in touch
             </v-stepper-step>
 
             <v-stepper-content step="2">
-            <v-card
-                color="grey lighten-1"
-                class="mb-12"
-                height="200px"
-            ></v-card>
+                <FormS2></FormS2>
+                
             <v-btn
                 color="primary"
                 @click="e6 = 3"
@@ -63,46 +59,25 @@
             :complete="e6 > 3"
             step="3"
             >
-            Select an ad format and name ad unit
+            Setup additional tokens
             </v-stepper-step>
 
             <v-stepper-content step="3">
-            <v-card
-                color="grey lighten-1"
-                class="mb-12"
-                height="200px"
-            ></v-card>
+            <FormS3></FormS3>
             <v-btn
                 color="primary"
                 @click="e6 = 4"
             >
-                Continue
+                Finish
             </v-btn>
             <v-btn text>
                 Cancel
             </v-btn>
             </v-stepper-content>
 
-            <v-stepper-step step="4">
-            View setup instructions
-            </v-stepper-step>
-            <v-stepper-content step="4">
-            <v-card
-                color="grey lighten-1"
-                class="mb-12"
-                height="200px"
-            ></v-card>
-            <v-btn
-                color="primary"
-                @click="e6 = 1"
-            >
-                Continue
-            </v-btn>
-            <v-btn text>
-                Cancel
-            </v-btn>
-            </v-stepper-content>
         </v-stepper>
+
+        <!-- STEPPER FOR SMALLER SCREENS -->
 
         <v-stepper 
         v-model="e1"
@@ -194,13 +169,24 @@
 </template>
 
 <script>
+import FormS1 from './subcomponents/FormS1'
+import FormS2 from './subcomponents/FormS2'
+import FormS3 from './subcomponents/FormS3'
+
 export default {
+
+    components: {
+        FormS1,
+        FormS2,
+        FormS3,
+    },
+
     data() {
         return {
             e6: 1,
             e1: 1,
-        }
-        
+            moznosti: FormS2.data.select,
+        } 
     }
 }
 </script>

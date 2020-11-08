@@ -1,9 +1,9 @@
 <template>
-    <div class="pa-6 grey--text text--darken-3">
+    <div class="pa-6">
         <p
         class="text-h4 text-justify"
         >
-        Wellcome!
+        Wellcome! {{ name }}
         </p>
         <p
         class="text-body-2 text-justify"
@@ -13,3 +13,14 @@
         </p>
     </div>
 </template>
+
+<script>
+
+export default {
+    computed: {
+        name() {
+            return this.$store.getters.getUserName
+        }
+    }
+}
+</script>

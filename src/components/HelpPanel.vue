@@ -1,5 +1,5 @@
 <template>
-    <div class="pa-6 grey--text text--darken-3">
+    <div class="pa-6">
         <p
         class="text-h5 text-justify"
         >
