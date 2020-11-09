@@ -31,19 +31,31 @@
             <td>{{ tokensData }}</td>
             </tr>
             <tr>
-            <td>Darkmode status (inverted)</td>
+            <td>Darkmode status</td>
             <td>{{ darkmode }}</td>
+            </tr>
+            <tr>
+            <td>Online</td>
+            <td>{{ onLine }} | Show back online: {{ showBackOnline }}</td>
             </tr>
         </tbody>
         </template>
         </v-simple-table>
         </v-sheet>
+        
+            
+        
     </div>
 </template>
 
 <script>
 
 export default {
+
+    data: () => ({
+        onLine: navigator.onLine,
+        showBackOnline: false,
+    }),
     computed: {
         name() {
             return this.$store.getters.getUserName
@@ -62,7 +74,33 @@ export default {
         },
         darkmode() {
             return this.$store.getters.getDarkmodeStatus
+        },
+        offLine() {
+            return !this.onLine
         }
+    },
+    // vv WATCHING CONNECTION STATUS vv (duplicated original in App.vue)//
+    methods: {
+        updateOnlineStatus(e) {
+            const { type } = e;
+            this.onLine = type === 'online';
+        }
+    },
+    watch: {
+        onLine(v) {
+            if(v) {
+            this.showBackOnline = true;
+            setTimeout(()=>{ this.showBackOnline = false; }, 5000);
+        }
+        }
+    },
+    mounted() {
+        window.addEventListener('online',  this.updateOnlineStatus);
+        window.addEventListener('offline', this.updateOnlineStatus);
+    },
+    beforeDestroy() {
+        window.removeEventListener('online',  this.updateOnlineStatus);
+        window.removeEventListener('offline', this.updateOnlineStatus);
     }
 }
 </script>

@@ -3,12 +3,10 @@
         <v-flex xs12 sm5 md2 class="mx-3 mt-7">
           <v-sheet
               rounded="lg"
-              min-height="420"
               :elevation="6"    
             >         
                 <!-- LEFT -->
               <WellcomePanel></WellcomePanel>
-              <router-view/>
             </v-sheet>
         </v-flex>
         <v-flex xs12 sm6 md7 class="mx-3 mt-7">
@@ -26,7 +24,6 @@
             <v-flex>
               <v-sheet
               rounded="lg"
-              min-height="200"
               :elevation="6"
             >
               <!-- RIGHT UP -->

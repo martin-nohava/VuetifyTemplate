@@ -1,14 +1,25 @@
 <template>
     <div class="pa-6">
-        <p
-        class="text-h4 text-justify"
+        <h1
+        class="text-h3 text-justify-left font-weight-medium mb-5"
         >
-        Wellcome!
+        Let's get <strong class="text-h2 font-weight-bold primary--text">started!</strong>
+        </h1>
+        <p
+        class="text-h6 text-justify-left font-weight-regular mb-3"
+        > <v-icon class="mr-2 secondary--text">mdi-card-account-details</v-icon>
+        Insert your ID card
         </p>
         <p
-        class="text-body-2 text-justify"
-        >
-        Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Fusce convallis metus id felis luctus adipiscing. Aenean massa. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nulla consequat massa quis enim. Praesent venenatis metus at tortor pulvinar varius. Donec venenatis vulputate lorem. Phasellus accumsan cursus velit. Pellentesque ut neque.
+        class="text-h6 text-justify-left font-weight-regular mb-3"
+        > <v-icon class="mr-2 secondary--text">mdi-account-edit</v-icon>
+        Fill data on this page
         </p>
+        <p
+        class="text-h6 text-justify-left font-weight-regular mb-3"
+        > <v-icon class="mr-2 secondary--text">mdi-check-circle</v-icon>
+        Done, now you get access
+        </p>
+        
     </div>
 </template>
