@@ -1,32 +1,48 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <v-app id="inspire">
+
+    <AppBar></AppBar>
+
+    <v-main 
+    class="pt-custom"
+    :style="[$vuetify.theme.dark ? null : {'background-color': '#F5F5F5'}]"
+    >
+
+    <div class="mx-7">
+      <router-view/>
     </div>
-    <router-view/>
-  </div>
+    
+    </v-main>
+
+    <v-footer padless>
+      <v-col
+        class="text-center"
+        cols="12"
+      >
+        {{ new Date().getFullYear() }} — <strong>Kvacker</strong>
+      </v-col>
+    </v-footer>
+
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import AppBar from './components/AppBar'
 
-#nav {
-  padding: 30px;
+  export default {
+    
+    components: {
+      AppBar
+    },
+  }
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+<style scoped>
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+@media screen and (min-width: 600px) {
+  .pt-custom {
+    padding-top: 94px !important;
   }
 }
+
 </style>

@@ -16,19 +16,19 @@
 
 <script>
 export default {
-    data() {
-        return {
-            status: 'on'
-        }
-    },
 
     methods: {
       changeDarkmodeStatus() {
-        if(this.status == 'on') {
-          this.status = 'off'
+        this.$store.dispatch('setDarkmode')
+      }
+    },
+    computed: {
+      status: function() {
+        if(this.$store.getters.getDarkmodeStatus == false) {
+          return 'on'
         }
         else {
-          this.status = 'on'
+          return 'off'
         }
       }
     }

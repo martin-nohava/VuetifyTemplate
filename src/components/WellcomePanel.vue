@@ -3,7 +3,7 @@
         <p
         class="text-h4 text-justify"
         >
-        Wellcome! {{ name }} {{step}} {{ email }} {{tokens}} {{tokensData}}
+        Wellcome!
         </p>
         <p
         class="text-body-2 text-justify"
@@ -12,26 +12,3 @@
         </p>
     </div>
 </template>
-
-<script>
-
-export default {
-    computed: {
-        name() {
-            return this.$store.getters.getUserName
-        },
-        step() {
-            return this.$store.getters.getStep
-        },
-        email() {
-            return this.$store.getters.getEmail
-        },
-        tokens() {
-            return this.$store.getters.getSelectedTokens
-        },
-        tokensData() {
-            return this.$store.getters.getTokensData
-        }
-    }
-}
-</script>

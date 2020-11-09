@@ -14,7 +14,8 @@ export default new Vuex.Store({
     },
     stepper: {
       step: 1
-    }
+    },
+    darkmode: false,
   },
   mutations: {
     SET_FIRSTNAME (state, payload) {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     },
     INCREMENT_STEP(state) {
       state.stepper.step += 1
+    },
+    SET_DARKMODE(state) {
+      state.darkmode = !state.darkmode
     }
   },
   actions: {
@@ -52,6 +56,9 @@ export default new Vuex.Store({
     },
     incrementStep(context) {
       context.commit('INCREMENT_STEP')
+    },
+    setDarkmode(context) {
+      context.commit('SET_DARKMODE')
     }
   },
   modules: {
@@ -71,6 +78,9 @@ export default new Vuex.Store({
     },
     getStep(state) {
       return state.stepper.step
+    },
+    getDarkmodeStatus(state) {
+      return state.darkmode
     }
   }
 })

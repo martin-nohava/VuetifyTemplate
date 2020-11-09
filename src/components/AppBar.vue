@@ -14,13 +14,15 @@
       <v-tabs
         centered
         class="ml-n9"
-        
       >
-        <v-tab
-          v-for="link in links"
-          :key="link"
-        >
-          {{ link }}
+        <v-tab @click="goHome()">
+          Home
+        </v-tab>
+        <v-tab @click="goDebug()">
+          Debug
+        </v-tab>
+        <v-tab @click="goAbout()">
+          About
         </v-tab>
       </v-tabs>
 
@@ -35,12 +37,24 @@
 <script>
 export default {
     data: () => ({
-      links: [
-        'Dashboard',
-        'Messages',
-        'Profile',
-        'Updates',
-      ],
+      
     }),
+    methods: {
+      goHome() {
+        this.$router.push({ name: 'Home' })
+      },
+      goAbout() {
+        this.$router.push({ name: 'About' })
+      },
+      goDebug() {
+        this.$router.push({ name: 'Debug' })
+      }
+    }
 }
 </script>
+
+<style scoped>
+  .remove-color {
+    color: inherit;
+  }
+</style>
