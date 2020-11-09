@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="space-around">
       <v-col
-      cols="2"
+        xs="6" sm="5" lg="3"
       >
         <v-sheet
           rounded="lg"

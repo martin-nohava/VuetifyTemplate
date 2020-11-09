@@ -1,15 +1,24 @@
 <template>
     <v-layout row justify-space-between>
-        <v-flex xs12 sm5 md2 class="mx-3 mt-7">
+        <v-flex lg3 class="mx-3 mt-7 d-none d-lg-block">
           <v-sheet
               rounded="lg"
               :elevation="6"    
             >         
-                <!-- LEFT -->
+                <!-- LEFT ON lg-->
               <WellcomePanel></WellcomePanel>
             </v-sheet>
         </v-flex>
-        <v-flex xs12 sm6 md7 class="mx-3 mt-7">
+        <v-flex md12 class="mx-3 mt-7 d-lg-none">
+          <v-sheet
+              rounded="lg"
+              :elevation="6"    
+            >         
+                <!-- LEFT ON sm, md -->
+              <WellcomePanel></WellcomePanel>
+            </v-sheet>
+        </v-flex>
+        <v-flex sm12 md7 lg6 class="mx-3 mt-7">
           <v-sheet
               rounded="lg"
               min-height="420"
@@ -19,7 +28,7 @@
                <MainPanel></MainPanel>
             </v-sheet>
         </v-flex>
-        <v-flex xs12 md2 class="mx-3 mt-7">
+        <v-flex sm12 md4 lg2 class="mx-3 mt-7">
           <v-layout column>
             <v-flex>
               <v-sheet

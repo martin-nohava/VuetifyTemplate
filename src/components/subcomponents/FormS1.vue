@@ -1,65 +1,87 @@
 <template>
-    <v-form v-model="valid">
-    <v-container>
-      <v-row>
-        <v-col
-          cols="12"
-          md="4"
-        >
-          <v-text-field
-            v-model="firstname"
-            :rules="nameRules"
-            :counter="10"
-            label="First name"
-            required
-            outlined
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="4"
-        >
-          <v-text-field
-            v-model="lastname"
-            :rules="nameRules"
-            :counter="10"
-            label="Last name"
-            required
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-btn
-          color="primary"
-          @click="nextStep"
-        >
-          Continue
-        </v-btn>
-         <v-btn text>
+  <validation-observer
+    ref="observer"
+    v-slot="{ invalid }"
+  >
+    <form @submit.prevent="submit">
+      <v-container>
+        <v-row>
+          <v-col
+            cols="12"
+            md="4">
+            <validation-provider
+              v-slot="{ errors }"
+              name="First Name"
+              rules="required"
+            >
+              <v-text-field
+                v-model="firstName"
+                :error-messages="errors"
+                label="First Name"
+                required
+                outlined
+              ></v-text-field>
+            </validation-provider>
+          </v-col>
+           <v-col
+            cols="12"
+            md="4">
+            <validation-provider
+              v-slot="{ errors }"
+              name="Last Name"
+              rules="required"
+            >
+              <v-text-field
+                v-model="lastName"
+                :error-messages="errors"
+                label="Last Name"
+                required
+                outlined
+              ></v-text-field>
+            </validation-provider>
+           </v-col>
+        </v-row>
+        <v-row>
+          <v-btn
+            class="mr-4"
+            type="submit"
+            :disabled="invalid"
+            color="primary"
+            @click="nextStep"
+          >
+            Continue
+          </v-btn>
+          <v-btn text @click="clear">
             Cancel
           </v-btn>
-      </v-row>
-    </v-container>
-    </v-form>
+        </v-row>
+      </v-container>
+    </form>
+  </validation-observer>
 </template>
 
 <script>
+
+import { required } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+
+setInteractionMode('eager')
+
+  extend('required', {
+    ...required,
+    message: '{_field_} can not be empty',
+  })
+
 export default {
+
+    components: {
+      ValidationProvider,
+      ValidationObserver,
+    },
+
     data: () => ({
-      valid: false,
-      firstname: '',
-      lastname: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters',
-      ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+/.test(v) || 'E-mail must be valid',
-      ],
+      firstName: '',
+      lastName: '',
     }),
     methods: {
 
@@ -68,12 +90,20 @@ export default {
         this.increment()
       },
       saveData() {
-        this.$store.dispatch('setName', { firstName: this.firstname, lastName: this.lastname })
+        this.$store.dispatch('setName', { firstName: this.firstName, lastName: this.lastName })
         
       },
       increment() {
         this.$store.dispatch('incrementStep')
-      }
+      },
+      submit () {
+        this.$refs.observer.validate()
+      },
+      clear () {
+        this.firstName = ''
+        this.lastName = ''
+        this.$refs.observer.reset()
+      },
     },
     
 }

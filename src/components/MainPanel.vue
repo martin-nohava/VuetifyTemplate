@@ -28,6 +28,7 @@
             step="2"
             >
             How can we get in touch
+            <small>Email will do</small>
             </v-stepper-step>
 
             <v-stepper-content step="2">
@@ -39,6 +40,7 @@
             step="3"
             >
             Chose additional tokens
+            <small>They will be used for authentication</small>
             </v-stepper-step>
 
             <v-stepper-content step="3">
@@ -50,6 +52,7 @@
             step="4"
             >
             Fill information
+            <small>Set token's values</small>
             </v-stepper-step>
 
             <v-stepper-content step="4">
