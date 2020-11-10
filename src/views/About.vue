@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="space-around">
       <v-col
-        xs="6" sm="5" lg="3"
+        cols="12" sm="5" lg="3"
       >
         <v-sheet
           rounded="lg"
@@ -17,7 +17,7 @@
             <p
             class="text-caption text-center font-weight-light"
             >
-            Version 0.1
+            Version 0.1 (hghv2)
             </p>
             <p
             class="text-body1 text-center"

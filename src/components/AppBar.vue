@@ -2,7 +2,7 @@
     <v-app-bar
       app
       rounded="lg"
-      class="ma-sm-7"
+      class="ma-sm-7 animate__animated animate__fadeInDown"
       :elevation="6"
       :style="[$vuetify.theme.dark ? null : {'background-color': '#fff'}]"
     >

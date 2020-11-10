@@ -38,6 +38,10 @@
             <td>Online</td>
             <td>{{ onLine }} | Show back online: {{ showBackOnline }}</td>
             </tr>
+            <tr>
+            <td>Height</td>
+            <td>{{ hgh }} </td>
+            </tr>
         </tbody>
         </template>
         </v-simple-table>
@@ -77,6 +81,9 @@ export default {
         },
         offLine() {
             return !this.onLine
+        },
+        hgh() {
+            return this.$vuetify.breakpoint.height
         }
     },
     // vv WATCHING CONNECTION STATUS vv (duplicated original in App.vue)//

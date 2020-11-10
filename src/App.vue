@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-
+    
     <AppBar></AppBar>
 
     <v-main 
@@ -11,7 +11,6 @@
     <div class="mx-7">
       <router-view/>
     </div>
-    
     </v-main>
 
     <v-footer padless>
@@ -22,20 +21,24 @@
         {{ new Date().getFullYear() }} — <strong>Kvacker</strong>
       </v-col>
     </v-footer>
-
     <v-snackbar
     v-model="showBackOnline"
     color="success black--text"
+    top
+    transition="slide-y-transition"
+    elevation="24"
     >
         {{ textOn }}
     </v-snackbar>
     <v-snackbar
     v-model="offLine"
     color="error"
+    top
+    transition="slide-y-transition"
+    elevation="24"
     >
         {{ textOff }}
     </v-snackbar>
-
   </v-app>
 </template>
 
@@ -55,7 +58,7 @@ import AppBar from './components/AppBar'
     computed: {
       offLine() {
             return !this.onLine
-        }
+        },
     },
     methods: {
         updateOnlineStatus(e) {
@@ -89,5 +92,4 @@ import AppBar from './components/AppBar'
     padding-top: 94px !important;
   }
 }
-
 </style>

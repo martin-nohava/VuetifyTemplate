@@ -16,6 +16,10 @@ export default new Vuex.Store({
       step: 1
     },
     darkmode: false,
+    pagesVisited: {
+      Home: false,
+      About: false,
+    }
   },
   mutations: {
     SET_FIRSTNAME (state, payload) {
@@ -38,6 +42,9 @@ export default new Vuex.Store({
     },
     SET_DARKMODE(state) {
       state.darkmode = !state.darkmode
+    },
+    SET_PAGEVISITED(state, payload) {
+      state.pagesVisited[payload] = true
     }
   },
   actions: {
@@ -59,7 +66,10 @@ export default new Vuex.Store({
     },
     setDarkmode(context) {
       context.commit('SET_DARKMODE')
-    }
+    },
+    setPageVisited(context, payload) {
+      context.commit('SET_PAGEVISITED', payload)
+    },
   },
   modules: {
   },
@@ -81,6 +91,9 @@ export default new Vuex.Store({
     },
     getDarkmodeStatus(state) {
       return state.darkmode
-    }
+    },
+    getHomePageVisited(state) {
+      return state.pagesVisited.Home
+    },
   }
 })
